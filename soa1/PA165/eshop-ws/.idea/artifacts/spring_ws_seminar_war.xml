@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="spring-ws-seminar:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="spring-ws-seminar-0.1.0.war">
+      <element id="artifact" artifact-name="spring-ws-seminar:war exploded" />
+    </root>
+  </artifact>
+</component>

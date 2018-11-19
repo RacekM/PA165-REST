@@ -1,0 +1,76 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://muni.fi.cz/pa165/ws/entities/products"
+xmlns:tns2="http://muni.fi.cz/pa165/ws/entities/prices"
+           targetNamespace="http://muni.fi.cz/pa165/ws/entities/products" elementFormDefault="qualified">
+    
+    <xs:import namespace="http://muni.fi.cz/pa165/ws/entities/prices" schemaLocation="prices.xsd" /> 
+
+    <!-- Various requests and responses needed for operations on products -->
+
+    <!-- TODO: add a new element for the request to search by name. You can call the element getProductRequestByName that will have
+         a string parameter for searching by name    -->
+    <xs:element name="getProductRequestByName">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="getProductRequest">
+        <xs:complexType>
+        </xs:complexType>
+    </xs:element>
+
+   <!-- TODO: change this response to support multiple products --> 
+    <xs:element name="getProductResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="product" type="tns:product" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    
+
+
+    <!-- Definition of type product -->
+    <xs:complexType name="product">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+	    <xs:element name="description" type="xs:string"/>
+            <xs:element name="addedDate" type="xs:date" />
+            <xs:element name="category" type="tns:category" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="color" type="tns:Color"/>
+            <xs:element name="price" type="tns2:price"/>  <!-- TODO: open prices.xsd and update the schema there -->
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- adding Category within the same XSD definition -->
+     <xs:complexType name="category">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- adding Color enum within the same XSD definition -->
+    <xs:simpleType name="Color">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BLACK"/>
+            <xs:enumeration value="WHITE"/>
+            <xs:enumeration value="RED"/>
+            <xs:enumeration value="GREEN"/>
+            <xs:enumeration value="BLUE"/>
+            <xs:enumeration value="ORANGE"/>
+            <xs:enumeration value="YELLOW"/>
+            <xs:enumeration value="AZURE"/>
+            <xs:enumeration value="MAGENTA"/>
+            <xs:enumeration value="BROWN"/>
+            <xs:enumeration value="PINK"/>
+            <xs:enumeration value="GRAY"/>
+            <xs:enumeration value="UNDEFINED"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
